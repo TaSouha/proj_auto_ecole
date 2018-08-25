@@ -211,7 +211,7 @@ function bascule(id)
 
   <div class="input-group date"><div class="input-group-addon">
      
-           Confirm mot de passe
+           Confirm mot de passe :
        </div>
         <input type="password" name="Confirm_mot_de_passe" class="form-control pull-right"></div>
       
