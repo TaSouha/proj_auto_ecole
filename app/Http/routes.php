@@ -181,13 +181,37 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('moderateur/register', 'ModerateurAuth\AuthController@showRegistrationForm');
     Route::post('moderateur/register', 'ModerateurAuth\AuthController@register');
 
-
-
-
-
     Route::post('moderateur/password/email','ModerateurAuth\PasswordController@sendResetLinkEmail');
     Route::post('moderateur/password/reset','ModerateurAuth\PasswordController@reset');
     Route::get('moderateur/password/reset/{token?}','ModerateurAuth\PasswordController@showResetForm');
 
   Route::get('/moderateur', 'ModerateurController@index');
 });  
+
+
+Route::get('/admin/Accueil/{id?}','Admin\AccueilController@index');
+Route::get('/admin/Depense/{id?}','Admin\DepenseController@index');
+Route::post('/admin/store_depense/{id?}','Admin\DepenseController@store');
+Route::resource('/admin/destroy_depense/{id?}/ff/{id1?}/','Admin\DepenseController@destroy');
+Route::patch('/admin/update_depense/{id?}/ff/{id1?}/','Admin\DepenseController@update');
+
+Route::get('/admin/Recette/{id?}','Admin\RecetteController@index');
+Route::post('/admin/store_recette/{id?}','Admin\RecetteController@store');
+Route::resource('/admin/destroy_recette/{id?}/ff/{id1?}/','Admin\RecetteController@destroy');
+Route::patch('/admin/update_recette/{id?}/ff/{id1?}','Admin\RecetteController@update');
+
+Route::get('/admin/Moniteur/{id?}','Admin\MoniteurController@index');
+Route::post('/admin/store_moniteur/{id?}','Admin\MoniteurController@store');
+Route::resource('/admin/destroy_moniteur/{id?}/ff/{id1?}/','Admin\MoniteurController@destroy');
+Route::patch('/admin/update_moniteur/{id?}/ff/{id1?}/','Admin\MoniteurController@update');
+
+Route::get('/admin/Formateur/{id?}','Admin\FormateurController@index');
+Route::post('/admin/store_formateur/{id?}','Admin\FormateurController@store');
+Route::resource('/admin/destroy_formateur/{id?}/ff/{id1?}/','Admin\FormateurController@destroy');
+Route::patch('/admin/update_formateur/{id?}/ff/{id1?}/','Admin\FormateurController@update');
+
+
+Route::get('/admin/Candidat/{id?}','Admin\CandidatController@index');
+Route::post('/admin/store_candidat/{id?}','Admin\CandidatController@store');
+Route::resource('/admin/destroy_candidat/{id?}/ff/{id1?}/','Admin\CandidatController@destroy');
+Route::patch('/admin/update_candidat/{id?}/ff/{id1?}/','Admin\CandidatController@update');

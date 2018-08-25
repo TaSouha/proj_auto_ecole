@@ -24,7 +24,7 @@ class RedirectIfNotAdmin
              $type=DB::table('teamwork')->where('id_Personne',$id)->value('Type');
              $candidat=DB::table('candidat')->where('id_Personne',$id)->count();
 if($type == 'Administrateur'){
-return $next($request);
+return redirect('/admin/Accueil/'. $id);
 }
 	
 	if($type=='Moniteur'){
