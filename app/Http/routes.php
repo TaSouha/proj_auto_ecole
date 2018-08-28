@@ -125,6 +125,23 @@ Route::patch('/update_alerte_v/{depense?}','Alerte_AVController@update');
 
 Route::get('/index_accueil','AccueilController@index');
 
+Route::group(['middleware' => ['web']], function () {
+  //Login Routes...
+    Route::get('/moderateur/login','ModerateurAuth\AuthController@showLoginForm');
+    Route::post('/moderateur/login','ModerateurAuth\AuthController@login');
+    Route::get('/moderateur/logout','ModerateurAuth\AuthController@logout');
+
+    // Registration Routes...
+    Route::get('moderateur/register', 'ModerateurAuth\AuthController@showRegistrationForm');
+    Route::post('moderateur/register', 'ModerateurAuth\AuthController@register');
+
+    Route::post('moderateur/password/email','ModerateurAuth\PasswordController@sendResetLinkEmail');
+    Route::post('moderateur/password/reset','ModerateurAuth\PasswordController@reset');
+    Route::get('moderateur/password/reset/{token?}','ModerateurAuth\PasswordController@showResetForm');
+
+  Route::get('/Moderateur', 'ModerateurController@index');
+});  
+
 Route::resource('formateur', 'FormateurController');
 Route::resource('moniteur', 'MoniteurController');
 Route::resource('administrateur', 'AdministrateurController');
@@ -154,39 +171,6 @@ Route::group(['middleware' => ['web']], function(){
 	Route::get('/home', 'HomeController@index');
 });
 
-Route::group(['middleware' => ['web']], function () {
-    //Login Routes...
-    Route::get('/admin/login','AdminAuth\AuthController@showLoginForm');
-    Route::post('/admin/login','AdminAuth\AuthController@login');
-    Route::get('/admin/logout','AdminAuth\AuthController@logout');
-
-    // Registration Routes...
-    Route::get('admin/register', 'AdminAuth\AuthController@showRegistrationForm');
-    Route::post('admin/register', 'AdminAuth\AuthController@register');
-
-    Route::post('admin/password/email','AdminAuth\PasswordController@sendResetLinkEmail');
-    Route::post('admin/password/reset','AdminAuth\PasswordController@reset');
-    Route::get('admin/password/reset/{token?}','AdminAuth\PasswordController@showResetForm');
-
-    Route::get('/admin', 'AdminController@index');
-
-});  
-Route::group(['middleware' => ['web']], function () {
-  //Login Routes...
-    Route::get('/moderateur/login','ModerateurAuth\AuthController@showLoginForm');
-    Route::post('/moderateur/login','ModerateurAuth\AuthController@login');
-    Route::get('/moderateur/logout','ModerateurAuth\AuthController@logout');
-
-    // Registration Routes...
-    Route::get('moderateur/register', 'ModerateurAuth\AuthController@showRegistrationForm');
-    Route::post('moderateur/register', 'ModerateurAuth\AuthController@register');
-
-    Route::post('moderateur/password/email','ModerateurAuth\PasswordController@sendResetLinkEmail');
-    Route::post('moderateur/password/reset','ModerateurAuth\PasswordController@reset');
-    Route::get('moderateur/password/reset/{token?}','ModerateurAuth\PasswordController@showResetForm');
-
-  Route::get('/moderateur', 'ModerateurController@index');
-});  
 
 
 Route::get('/admin/Accueil/{id?}','Admin\AccueilController@index');
@@ -215,3 +199,99 @@ Route::get('/admin/Candidat/{id?}','Admin\CandidatController@index');
 Route::post('/admin/store_candidat/{id?}','Admin\CandidatController@store');
 Route::resource('/admin/destroy_candidat/{id?}/ff/{id1?}/','Admin\CandidatController@destroy');
 Route::patch('/admin/update_candidat/{id?}/ff/{id1?}/','Admin\CandidatController@update');
+Route::get('/admin/Facture/{id?}/{id1?}','Admin\FactureController@show');
+Route::get('/admin/Paiement/{id?}/{id1?}','Admin\PaiementController@index');
+Route::post('/admin/store_paiement/{id?}/{id1?}','Admin\PaiementController@store');
+Route::resource('/admin/destroy_paiement/{id?}/ff/{id1?}/','Admin\PaiementController@destroy');
+Route::patch('/admin/update_paiement/{id?}/ff/{id1?}/','Admin\PaiementController@update');
+
+Route::get('/admin/Vehicule/{id?}','Admin\VehiculeController@index');
+Route::post('/admin/store_vehicule/{id?}/{id1?}','Admin\VehiculeController@store');
+Route::resource('/admin/destroy_vehicule/{id?}/ff/{id1?}/','Admin\VehiculeController@destroy');
+Route::patch('/admin/update_vehicule/{id?}/ff/{id1?}/','Admin\VehiculeController@update');
+
+
+Route::get('/admin/Alerte_V/{id?}/{id1?}','Admin\Alerte_VController@index');
+Route::post('/admin/store_Alerte_V/{id?}/{id1?}','Admin\Alerte_VController@store');
+Route::resource('/admin/destroy_Alerte_V/{id?}/ff/{id1?}/','Admin\Alerte_VController@destroy');
+Route::patch('/admin/update_Alerte_V/{id?}/ff/{id1?}/','Admin\Alerte_VController@update');
+
+Route::get('/admin/Alerte_Vidange/{id?}/{id1?}','Admin\Alerte_VidangeController@index');
+Route::post('/admin/store_Alerte_Vidange/{id?}/{id1?}','Admin\Alerte_VidangeController@store');
+Route::resource('/admin/destroy_Alerte_Vidange/{id?}/ff/{id1?}/','Admin\Alerte_VidangeController@destroy');
+Route::patch('/admin/update_Alerte_Vidange/{id?}/ff/{id1?}/','Admin\Alerte_VidangeController@update');
+
+
+Route::get('/admin/Alerte_A/{id?}/{id1?}','Admin\Alerte_AController@index');
+Route::post('/admin/store_Alerte_A/{id?}/{id1?}','Admin\Alerte_AController@store');
+Route::resource('/admin/destroy_Alerte_A/{id?}/ff/{id1?}/','Admin\Alerte_AController@destroy');
+Route::patch('/admin/update_Alerte_A/{id?}/ff/{id1?}/','Admin\Alerte_AController@update');
+Route::get('/admin/Seance_Theorique/{id?}','Admin\Seance_TheoriqueController@index');
+Route::get('/admin/Seance_Pratique/{id?}','Admin\Seance_PratiqueController@index');
+
+Route::post('/admin/store_Seance_Pratique/{id?}','Admin\Seance_PratiqueController@store');
+Route::patch('/admin/update_Seance_Pratique/{id?}/{id2?}/{id1?}/','Admin\Seance_PratiqueController@update');
+Route::resource('/admin/destroy_Seance_Pratique/{id?}/{id2?}/{id1?}/','Admin\Seance_PratiqueController@destroy');
+Route::resource('/admin/active_Seance_Pratique/{id?}/{id2?}/{id1?}/','Admin\Seance_PratiqueController@active');
+Route::resource('/admin/non_active_Seance_Pratique/{id?}/{id2?}/{id1?}/','Admin\Seance_PratiqueController@non_active');
+Route::resource('/admin/non_active1_Seance_Pratique/{id2?}/{id1?}/','Admin\Seance_PratiqueController@non_active1');
+
+
+Route::group(['middleware' => ['web']], function () {
+    //Login Routes...
+    Route::get('/admin/login','AdminAuth\AuthController@showLoginForm');
+    Route::post('/admin/login','AdminAuth\AuthController@login');
+    Route::get('/admin/logout','AdminAuth\AuthController@logout');
+
+    // Registration Routes...
+    Route::get('admin/register', 'AdminAuth\AuthController@showRegistrationForm');
+    Route::post('admin/register', 'AdminAuth\AuthController@register');
+
+    Route::post('admin/password/email','AdminAuth\PasswordController@sendResetLinkEmail');
+    Route::post('admin/password/reset','AdminAuth\PasswordController@reset');
+    Route::get('admin/password/reset/{token?}','AdminAuth\PasswordController@showResetForm');
+
+    Route::get('/admin', 'AdminController@index');
+
+});  
+
+
+Route::get('/admin/Examen/{id?}','Admin\ExamenController@index');
+Route::post('/admin/store_Examen/{id?}','Admin\ExamenController@store');
+Route::resource('/admin/destroy_Examen/{id?}/{id1?}/','Admin\ExamenController@destroy');
+Route::patch('/admin/update_Examen/{id?}/{id1?}/','Admin\ExamenController@update');
+Route::resource('/admin/admis_Examen/{id?}/{id1?}/','Admin\ExamenController@admis');
+Route::resource('/admin/refusé_Examen/{id?}/{id1?}/','Admin\ExamenController@refusé');
+
+
+Route::get('/admin/Examen_pratique/{id?}','Admin\Examen_pratiqueController@index');
+Route::post('/admin/store_Examen_pratique/{id?}','Admin\Examen_pratiqueController@store');
+Route::resource('/admin/destroy_Examen_pratique/{id?}/{id1?}/','Admin\Examen_pratiqueController@destroy');
+Route::patch('/admin/update_Examen_pratique/{id?}/{id1?}/','Admin\Examen_pratiqueController@update');
+Route::resource('/admin/admis_Examen_pratique/{id?}/{id1?}/','Admin\Examen_pratiqueController@admis');
+Route::resource('/admin/refusé_Examen_pratique/{id?}/{id1?}/','Admin\Examen_pratiqueController@refusé');
+
+
+Route::get('/admin/Examen_pratique_créno/{id?}','Admin\Examen_pratique_crenoController@index');
+Route::post('/admin/store_Examen_pratique_créno/{id?}','Admin\Examen_pratique_crenoController@store');
+Route::resource('/admin/destroy_Examen_pratique_créno/{id?}/{id1?}/','Admin\Examen_pratique_crenoController@destroy');
+Route::patch('/admin/update_Examen_pratique_créno/{id?}/{id1?}/','Admin\Examen_pratique_crenoController@update');
+Route::resource('/admin/admis_Examen_pratique_créno/{id?}/{id1?}/','Admin\Examen_pratique_crenoController@admis');
+Route::resource('/admin/refusé_Examen_pratique_créno/{id?}/{id1?}/','Admin\Examen_pratique_crenoController@refusé');
+
+
+Route::post('/admin/store_Seances/{id?}/{id2?}/{id1?}/','Admin\SeancesController@store');
+Route::get('/admin/seances/{id?}/{id2?}/{id1?}/','Admin\SeancesController@index');
+Route::resource('/admin/destroy_Seances/{id?}/{id2?}/{id1?}/','Admin\SeancesController@destroy');
+
+Route::post('/admin/store_Seance_Theorique/{id?}','Admin\Seance_TheoriqueController@store');
+Route::patch('/admin/update_Seance_Theorique/{id?}/{id2?}/{id1?}/','Admin\Seance_TheoriqueController@update');
+Route::resource('/admin/destroy_Seance_Theorique/{id?}/{id2?}/{id1?}/','Admin\Seance_TheoriqueController@destroy');
+Route::resource('/admin/active_Seance_Theorique/{id?}/{id2?}/{id1?}/','Admin\Seance_TheoriqueController@active');
+Route::resource('/admin/non_active_Seance_Theorique/{id?}/{id2?}/{id1?}/','Admin\Seance_TheoriqueController@non_active');
+
+Route::get('/admin/Auto_ecole/{id1?}','Admin\ParametrageController@index');
+Route::patch('/admin/update_Parametrage/{id?}/{id1?}','Admin\ParametrageController@update');
+
+Route::get('/admin/Profile/{id1?}','Admin\ProfileController@index');
+Route::patch('/admin/update_Profile/{id1?}','Admin\ProfileController@update');

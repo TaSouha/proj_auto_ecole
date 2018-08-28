@@ -23,11 +23,6 @@ class RedirectIfAuthenticated
             return redirect()->route('personne.dashboard');
           }
           break;
-        default:
-          if (Auth::guard($guard)->check()) {
-              return redirect('/personne1');
-          }
-          break;
       }
       return $next($request);
     }

@@ -9,7 +9,10 @@ class CreateSeanceTable extends Migration {
 	{
 		Schema::create('Seance', function(Blueprint $table) {
 			$table->increments('id');
-			$table->datetime('Date');
+			$table->date('Date');
+			$table->time('Debut');
+			$table->time('Fin');
+
 			$table->string('Etat', 255);
 		});
 	}

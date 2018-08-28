@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use DateTime;
 class FormateurController extends Controller {
 
+
   /**
    * Display a listing of the resource.
    *

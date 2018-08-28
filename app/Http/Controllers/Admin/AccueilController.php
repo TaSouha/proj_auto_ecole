@@ -8,7 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use DB;
 use DateTime;
+
 class AccueilController extends Controller {
+  
 
   /**
    * Display a listing of the resource.

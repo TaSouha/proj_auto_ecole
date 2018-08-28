@@ -1,5 +1,12 @@
 
 @extends('layouts.moderateur')
+@section('profile')
+ <div class="pull-left">
+                  <a href="/proj_auto_ecole/public/admin/Profile/{{$id1}}"class="btn btn-default btn-flat">Profile</a>
+                </div>
+@endsection
+
+
 @section('content')
 
       <ul class="sidebar-menu" data-widget="tree">
@@ -18,11 +25,11 @@
             <i class="fa fa-users"></i>
             <span>Auto_école</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">2</span>
+              <span class="label label-primary pull-right">3</span>
             </span>
           </a>
           <ul class="treeview-menu">
-           
+           <li ><a href="/proj_auto_ecole/public/admin/Auto_ecole/{{$id1}}"><i class="fa fa-circle-o"></i> Paramétrage </a></li>
             <li ><a href="/proj_auto_ecole/public/admin/Depense/{{$id1}}"><i class="fa fa-circle-o"></i> Dépenses </a></li>
             <li ><a href="/proj_auto_ecole/public/admin/Recette/{{$id1}}"><i class="fa fa-circle-o"></i> Recette </a></li>
             
@@ -44,8 +51,40 @@
           </ul>
         </li>
         <li ><a href="/proj_auto_ecole/public/admin/Candidat/{{$id1}}"><i class="fa fa-user"></i> <span>Candidats</span></a></li>
-        <li><a href="/proj_auto_ecole/public/vehicule"><i class=" fa fa-automobile"></i> <span>Véhicules</span></a></li>
-       <li><a href="#"><i class=" fa fa-book"></i> <span>Cours</span></a></li>
+                       <li><a href="/proj_auto_ecole/public/admin/Vehicule/{{$id1}}"><i class=" fa fa-automobile"></i> <span>Véhicules</span></a></li>
+               <li class="treeview">
+
+          <a href="#">
+            <i class="fa fa-book"></i>
+            <span>Séances</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+           <li   ><a href="/proj_auto_ecole/public/admin/Seance_Theorique/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Séances théoriques</span></a></li>
+              <li><a href="/proj_auto_ecole/public/admin/Seance_Pratique/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Séances pratiques</span></a></li>
+          </ul>
+        </li>
+
+<li class="treeview">
+
+          <a href="#">
+            <i class="fa fa-pencil-square-o"></i>
+            <span>Examens</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">3</span>
+            </span>
+          </a>
+          <ul class="treeview-menu ">
+           
+           <li ><a href="/proj_auto_ecole/public/admin/Examen/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Examens théoriques</span></a></li>
+              <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-circuit</span></a></li>
+                   <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique_créno/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-créno</span></a></li>
+          </ul>
+        </li>
+
       </ul>
       <!-- /.sidebar-menu -->
     </section>

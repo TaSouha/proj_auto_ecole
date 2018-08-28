@@ -1,5 +1,12 @@
 
 @extends('layouts.moderateur')
+@section('profile')
+ <div class="pull-left">
+                  <a href="/proj_auto_ecole/public/admin/Profile/{{$id}}"class="btn btn-default btn-flat">Profile</a>
+                </div>
+@endsection
+
+
 @section('content')
 
   <ul class="sidebar-menu" data-widget="tree">
@@ -12,17 +19,17 @@
           </a>
          
         </li>
- <li class="treeview">
+  <li class="treeview">
 
           <a href="#">
             <i class="fa fa-users"></i>
             <span>Auto_école</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">2</span>
+              <span class="label label-primary pull-right">3</span>
             </span>
           </a>
           <ul class="treeview-menu">
-           
+           <li ><a href="/proj_auto_ecole/public/admin/Auto_ecole/{{$id}}"><i class="fa fa-circle-o"></i> Paramétrage </a></li>
             <li ><a href="/proj_auto_ecole/public/admin/Depense/{{$id}}"><i class="fa fa-circle-o"></i> Dépenses </a></li>
             <li ><a href="/proj_auto_ecole/public/admin/Recette/{{$id}}"><i class="fa fa-circle-o"></i> Recette </a></li>
             
@@ -45,8 +52,41 @@
           </ul>
         </li>
         <li ><a href="/proj_auto_ecole/public/admin/Candidat/{{$id}}"><i class="fa fa-user"></i> <span>Candidats</span></a></li>
-        <li><a href="/proj_auto_ecole/public/vehicule"><i class=" fa fa-automobile"></i> <span>Véhicules</span></a></li>
-       <li><a href="#"><i class=" fa fa-book"></i> <span>Cours</span></a></li>
+               <li><a href="/proj_auto_ecole/public/admin/Vehicule/{{$id}}"><i class=" fa fa-automobile"></i> <span>Véhicules</span></a></li>
+
+             <li class="treeview">
+
+          <a href="#">
+            <i class="fa fa-book"></i>
+            <span>Séances</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+           <li   ><a href="/proj_auto_ecole/public/admin/Seance_Theorique/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Séances théoriques</span></a></li>
+              <li><a href="/proj_auto_ecole/public/admin/Seance_Pratique/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Séances pratiques</span></a></li>
+          </ul>
+        </li>
+
+<li class="treeview">
+
+          <a href="#">
+            <i class="fa fa-pencil-square-o"></i>
+            <span>Examens</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">3</span>
+            </span>
+          </a>
+          <ul class="treeview-menu ">
+           
+           <li ><a href="/proj_auto_ecole/public/admin/Examen/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Examens théoriques</span></a></li>
+              <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-circuit</span></a></li>
+                   <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique_créno/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-créno</span></a></li>
+          </ul>
+        </li>
+
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -136,7 +176,7 @@ Accueil
 <!-- PRODUCT LIST -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Les nouvelles auto-écoles ajoutées</h3>
+              <h3 class="box-title">Les nouvelles véhicules ajoutés</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -156,7 +196,7 @@ Accueil
 
                 <li class="item">
                   <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
+                    <img src="{{URL::asset('dist/img/default-50x50.gif')}}" alt="Product Image">
                   </div>
                   <div class="product-info">
                     <a href="javascript:void(0)" class="product-title">{{$value->Matricule}}

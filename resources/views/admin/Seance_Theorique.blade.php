@@ -1,0 +1,555 @@
+
+@extends('layouts.moderateur')
+@section('profile')
+ <div class="pull-left">
+                  <a href="/proj_auto_ecole/public/admin/Profile/{{$id1}}"class="btn btn-default btn-flat">Profile</a>
+                </div>
+@endsection
+
+
+@section('content')
+
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">HEADER</li>
+        <!-- Optionally, you can add icons to the links -->
+       <li >
+          <a href="/proj_auto_ecole/public/admin/Accueil/{{$id1}}">
+            <i class="fa fa-dashboard"></i> <span>Accueil</span>
+         
+          </a>
+         
+        </li>
+  <li class="treeview">
+
+          <a href="#">
+            <i class="fa fa-users"></i>
+            <span>Auto_école</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">3</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           <li ><a href="/proj_auto_ecole/public/admin/Auto_ecole/{{$id1}}"><i class="fa fa-circle-o"></i> Paramétrage </a></li>
+            <li ><a href="/proj_auto_ecole/public/admin/Depense/{{$id1}}"><i class="fa fa-circle-o"></i> Dépenses </a></li>
+            <li ><a href="/proj_auto_ecole/public/admin/Recette/{{$id1}}"><i class="fa fa-circle-o"></i> Recette </a></li>
+            
+          </ul>
+        </li>
+          <li class="treeview ">
+          <a href="#">
+            <i class="fa fa-users"></i>
+            <span>Employées</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+            <li ><a href="/proj_auto_ecole/public/admin/Moniteur/{{$id1}}"><i class="fa fa-circle-o"></i> Moniteurs </a></li>
+            <li><a href="/proj_auto_ecole/public/admin/Formateur/{{$id1}}"><i class="fa fa-circle-o"></i> Formateurs </a></li>
+            
+          </ul>
+        </li>
+        <li  ><a href="/proj_auto_ecole/public/admin/Candidat/{{$id1}}"><i class="fa fa-user"></i> <span>Candidats</span></a></li>
+               <li><a href="/proj_auto_ecole/public/admin/Vehicule/{{$id1}}"><i class=" fa fa-automobile"></i> <span>Véhicules</span></a></li>
+          <li class="treeview active">
+
+          <a href="#">
+            <i class="fa fa-book"></i>
+            <span>Séances</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+           <li  class="active" ><a href="/proj_auto_ecole/public/admin/Seance_Theorique/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Séances théoriques</span></a></li>
+              <li><a href="/proj_auto_ecole/public/admin/Seance_Pratique/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Séances pratiques</span></a></li>
+          </ul>
+        </li>
+
+<li class="treeview">
+
+          <a href="#">
+            <i class="fa fa-pencil-square-o"></i>
+            <span>Examens</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">3</span>
+            </span>
+          </a>
+          <ul class="treeview-menu ">
+           
+           <li ><a href="/proj_auto_ecole/public/admin/Examen/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Examens théoriques</span></a></li>
+              <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-circuit</span></a></li>
+                   <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique_créno/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-créno</span></a></li>
+          </ul>
+        </li>
+
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Séances théoriques
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Acceuil </a></li>
+        <li class="active">Scéances théoriques</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+      <script type="text/javascript"> 
+function bascule(id) 
+{ 
+  if (document.getElementById(id).style.visibility == "hidden")
+      document.getElementById(id).style.visibility = "visible"; 
+  else  document.getElementById(id).style.visibility = "hidden"; 
+} 
+</script> 
+
+          <div class="box">
+            <div class="box-header">
+              @if ($message = Session::get('success'))
+      <div class="alert alert-success">
+          <p>{{ $message }}</p>
+      </div>
+  @endif
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Date</th>
+   <th>Début</th>
+   <th>Fin</th>
+   <th>Etat</th>
+
+   
+       <th with="140px" class="text-center">
+    <!-- <a href="{{url('/create_auto_ecole')}}" class="btn btn-success btn-sm">
+      <i class="glyphicon glyphicon-plus"></i></a>-->
+<button  class="btn btn-success btn-sm"  data-toggle="modal" data-url="{{url('/create_candidat')}}"  data-target="#custom-width-modal4"> <i class="glyphicon glyphicon-plus"></i></button>
+        </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+
+    <div id="custom-width-modal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:25%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><center>
+                    <h4 class="modal-title" id="custom-width-modalLabel">Séance 
+            <span class="label label-danger">non valide</span>
+</h4></center>
+                </div>
+
+
+<form action="/proj_auto_ecole/public/admin/store_Seance_Theorique/{{$id1}}" method="POST" class="remove-record-model">
+                <div class="modal-body">
+                    <h4>
+  
+      {{ csrf_field() }}
+    <div class="input-group date"><div class="input-group-addon" >
+        Date
+          </div>
+          <input type="date" name="Date" class="form-control pull-right"  value="{{old('Date')}}">   </div>
+   
+            @if ($errors->has('Date'))
+                                   
+                {{ $errors->first('Date') }}
+                                   
+                 @endif
+   
+      <div class="input-group date"><div class="input-group-addon">
+      Début
+        </div>
+      <input type="time" name="Debut" class="form-control pull-right" value="{{old('Debut')}}"></div>
+        
+            @if ($errors->has('Debut'))
+                                   
+                    {{ $errors->first('Debut') }}
+                                   
+                @endif
+
+                 <div class="input-group date"><div class="input-group-addon">
+           Fin
+
+        </div>
+      <input type="time" name="Fin" class="form-control pull-right" value="{{old('Date_nais')}}"></div>
+        
+            @if ($errors->has('Fin'))
+                                   
+                    {{ $errors->first('Fin') }}
+                                   
+                @endif
+ 
+     <div class="input-group date"><div class="input-group-addon">
+      Prix
+        </div>
+      <input type="text" name="Prix" class="form-control pull-right" value="{{old('Prix')}}"></div>
+        
+            @if ($errors->has('Prix'))
+                                   
+                    {{ $errors->first('Prix') }}
+                                   
+                @endif
+
+         
+<div class="input-group date"><div class="input-group-addon"> 
+  Formateurs</div>
+<SELECT name="Formateur" size="1">
+
+@foreach($liste as $l)
+<OPTION value="{{$l->id}}">{{$l->Nom}} {{$l->Prenom}}</OPTION>
+@endforeach
+</SELECT></div>
+       
+            @if ($errors->has('Formateur'))
+                                   
+                    <strong>{{ $errors->first('Formateur') }}</strong><br>
+                                   
+                 @endif
+
+           
+<div class="input-group date"><div class="input-group-addon"> 
+  Candidat</div>
+<SELECT name="Candidat" size="1">
+
+@foreach($list as $l)
+<OPTION value="{{$l->id}}">{{$l->Nom}} {{$l->Prenom}}</OPTION>
+@endforeach
+</SELECT></div>
+       
+            @if ($errors->has('Candidat'))
+                                   
+                    <strong>{{ $errors->first('Candidat') }}</strong><br>
+                                   
+                 @endif
+
+  
+      </div>
+           </h4>
+  
+                <div class="modal-footer">
+                  <input type="submit" class="btn btn-primary" name="submit" value="Add">
+                    
+                </div>             
+
+</form></div></div></div>
+
+
+
+
+
+
+
+
+
+                    @foreach ($seance_theorique as $key => $value)
+
+
+
+
+<!-- Delete Model -->
+    <div id="custom-width-modalb{{$value->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="custom-width-modalLabel">Confirmation de suppression</h4>
+                </div>
+
+   <form action="/proj_auto_ecole/public/admin/destroy_Seance_Theorique/{{ $value->id}}/{{$value->id2}}/{{$id1}}" method="DELETE" data-parsley-validate>
+
+                <div class="modal-body">
+                    <h4>Voulez-vous vraiment supprimer cette séance?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">Fermer</button>
+                    <button type="submit" style="display: inline;"  class="btn btn-danger waves-effect waves-light">Supprimer</button>
+
+                </div>
+            </div>
+  {!! Form::close() !!}
+
+        </div>
+    </div>
+
+<form action="" method="POST" class="remove-record-model">
+    <div id="custom-width-modala{{$value->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:25%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><center>
+                    <h4 class="modal-title" id="custom-width-modalLabel">Séance théorique</h4><center>
+   @if($value->Etat=='non valide')
+            <span class="label label-danger">{{ $value->Etat}}</span>
+
+              @elseif($value->Etat=='valide')
+            <span class="label label-success">{{ $value->Etat}}</span>
+
+                @else
+            <span class="label label-warning">{{ $value->Etat}}</span>
+
+      
+      @endif
+                    </h4><center>
+
+
+                </div>
+                <div class="modal-body">
+                  <h4>
+       <strong>Date : </strong>
+   
+            {{ $value->Date}}<br><br>
+   
+               <strong>Début : </strong>
+   
+            {{ $value->Debut}}<br><br>     
+
+    
+        <strong>Fin : </strong>
+   
+            {{ $value->Fin}}<br><br>
+
+ 
+        <strong>Prix : </strong>
+   
+            {{ $value->Prix}}<br><br>
+
+     
+        <strong>formateur : </strong>
+   
+            {{ $value->Nom }} {{$value->Prenom }}<br><br>
+ 
+                  </h4>
+                  </div>   
+                <div class="modal-footer">
+      
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</center>
+</form>
+
+
+ <div id="custom-width-modalc{{$value->id2}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:25%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><center>
+                    <h4 class="modal-title" id="custom-width-modalLabel">Séance  @if($value->Etat=='non valide')
+            <span class="label label-danger">{{ $value->Etat}}</span>
+
+              @elseif($value->Etat=='valide')
+            <span class="label label-success">{{ $value->Etat}}</span>
+
+                @else
+            <span class="label label-warning">{{ $value->Etat}}</span>
+
+      
+      @endif</h4></center>
+                </div>
+
+
+<form action="/proj_auto_ecole/public/admin/update_Seance_Theorique/{{$value->id}}/{{$value->id2}}/{{$id1}}" method="POST" class="remove-record-model">
+                <div class="modal-body">
+                    <h4>
+  
+              {{ csrf_field() }}
+{{ method_field('PATCH') }}
+    <div class="input-group date"><div class="input-group-addon" >
+        Date
+          </div>
+          <input type="date" name="Date" class="form-control pull-right"  value="{{$value->Date}}">   </div>
+   
+            @if ($errors->has('Date'))
+                                   
+                {{ $errors->first('Date') }}
+                                   
+                 @endif
+   
+      <div class="input-group date"><div class="input-group-addon">
+      Début
+        </div>
+      <input type="time" name="Debut" class="form-control pull-right" value="{{$value->Debut}}"></div>
+        
+            @if ($errors->has('Debut'))
+                                   
+                    {{ $errors->first('Debut') }}
+                                   
+                @endif
+
+                 <div class="input-group date"><div class="input-group-addon">
+           Fin
+
+        </div>
+      <input type="time" name="Fin" class="form-control pull-right" value="{{$value->Fin}}"></div>
+        
+            @if ($errors->has('Fin'))
+                                   
+                    {{ $errors->first('Fin') }}
+                                   
+                @endif
+ 
+     <div class="input-group date"><div class="input-group-addon">
+      Prix
+        </div>
+      <input type="text" name="Prix" class="form-control pull-right" value="{{$value->Prix}}"></div>
+        
+            @if ($errors->has('Prix'))
+                                   
+                    {{ $errors->first('Prix') }}
+                                   
+                @endif
+
+         
+<div class="input-group date"><div class="input-group-addon"> 
+  Formateurs</div>
+<SELECT name="Formateur" size="1">
+<OPTION value="{{$value->id_P}}">{{$value->Nom}} {{$value->Prenom}}</OPTION>
+
+@foreach($liste as $l)
+
+<OPTION value="{{$l->id}}">{{$l->Nom}} {{$l->Prenom}}</OPTION>
+@endforeach
+</SELECT></div>
+       
+            @if ($errors->has('Formateur'))
+                                   
+                    <strong>{{ $errors->first('Formateur') }}</strong><br>
+                                   
+                 @endif
+
+ 
+           </h4>
+  </div>
+                <div class="modal-footer">
+                  <input type="submit" class="btn btn-primary" name="submit" value="Modifier">
+                    
+                </div>             
+       
+</form>
+
+        </div>
+    </div>
+
+
+
+      <tr>
+        <td>{{$value->Date}}</td>
+        <td>{{$value->Debut}}</td>
+        <td>{{$value->Fin}}</td>
+
+
+  @if($value->Etat=='non valide')
+            <td><span class="label label-danger">{{ $value->Etat }}</span></td>
+
+              @elseif($value->Etat=='valide')
+            <td><span class="label label-success">{{ $value->Etat }}</span></td>
+
+              @else            
+        <td> <span class="label label-warning">{{ $value->Etat }}</span></td>
+      @endif
+
+     <td>
+
+
+
+               <button  class="btn btn-info btn-sm"  data-toggle="modal" data-url="{{url('/show_candidat', $value->id) }}" data-id="{{$value->id}}" data-target="#custom-width-modala{{$value->id}}"> <i class="glyphicon glyphicon-zoom-in"></i></button>
+
+ 
+
+                      <button  class="btn btn-success btn-sm"  data-toggle="modal" data-url="{{url('/edit_candidat', $value->id) }}" data-id="{{$value->id}}" data-target="#custom-width-modalc{{$value->id2}}"> <i class="glyphicon glyphicon-pencil"></i></button>
+
+               <button class="btn btn-danger btn-sm" data-toggle="modal" data-url="{{url('/destroy_candidat', $value->id) }}" data-id="{{$value->id}}" data-target="#custom-width-modalb{{$value->id}}"><i class="glyphicon glyphicon-trash"></i></button>
+
+           
+
+
+             <a class="btn btn-warning btn-sm" href='/proj_auto_ecole/public/admin/seances/{{$value->id}}/{{$value->id2}}/{{$id1}}'>
+              <i class="glyphicon glyphicon-list-alt"></i></a>
+                                   @if($value->Etat=="non valide")
+ <a class="btn btn-success btn-sm" href='/proj_auto_ecole/public/admin/active_Seance_Theorique/{{$value->id}}/{{$value->id2}}/{{$id1}}'>
+              <i class="fa fa-check-square-o"></i></a>
+
+       
+              @elseif($value->Etat=="valide")
+                   <a class="btn btn-danger btn-sm" href='/proj_auto_ecole/public/admin/non_active_Seance_Theorique/{{$value->id}}/{{$value->id2}}/{{$id1}}'>
+              <i class="fa fa-square-o"></i></a>
+              @endif
+        </td>
+</tr>
+    @endforeach   
+
+                </tbody>
+                
+              </table>
+
+
+      
+    
+
+    
+  </table>
+  
+  </center>
+  </form>
+
+
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+
+
+@endsection
+
+
+@section('script')
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+
+
+
+@endsection
+

@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 class RecetteController extends Controller {
 
+
   /**
    * Display a listing of the resource.
    *

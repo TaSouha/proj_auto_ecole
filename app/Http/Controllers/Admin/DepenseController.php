@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 class DepenseController extends Controller {
 
+
   /**
    * Display a listing of the resource.
    *

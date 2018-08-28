@@ -1,5 +1,12 @@
 
 @extends('layouts.moderateur')
+@section('profile')
+ <div class="pull-left">
+                  <a href="/proj_auto_ecole/public/admin/Profile/{{$id1}}"class="btn btn-default btn-flat">Profile</a>
+                </div>
+@endsection
+
+
 @section('content')
 
       <ul class="sidebar-menu" data-widget="tree">
@@ -12,23 +19,23 @@
           </a>
          
         </li>
- <li class="treeview">
+  <li class="treeview">
 
           <a href="#">
             <i class="fa fa-users"></i>
             <span>Auto_école</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">2</span>
+              <span class="label label-primary pull-right">3</span>
             </span>
           </a>
           <ul class="treeview-menu">
-           
+           <li ><a href="/proj_auto_ecole/public/admin/Auto_ecole/{{$id1}}"><i class="fa fa-circle-o"></i> Paramétrage </a></li>
             <li ><a href="/proj_auto_ecole/public/admin/Depense/{{$id1}}"><i class="fa fa-circle-o"></i> Dépenses </a></li>
             <li ><a href="/proj_auto_ecole/public/admin/Recette/{{$id1}}"><i class="fa fa-circle-o"></i> Recette </a></li>
             
           </ul>
         </li>
-          <li class="treeview active">
+          <li class="treeview ">
           <a href="#">
             <i class="fa fa-users"></i>
             <span>Employées</span>
@@ -44,8 +51,39 @@
           </ul>
         </li>
         <li  class="active" ><a href="/proj_auto_ecole/public/admin/Candidat/{{$id1}}"><i class="fa fa-user"></i> <span>Candidats</span></a></li>
-        <li><a href="/proj_auto_ecole/public/vehicule"><i class=" fa fa-automobile"></i> <span>Véhicules</span></a></li>
-       <li><a href="#"><i class=" fa fa-book"></i> <span>Cours</span></a></li>
+               <li><a href="/proj_auto_ecole/public/admin/Vehicule/{{$id1}}"><i class=" fa fa-automobile"></i> <span>Véhicules</span></a></li>
+           <li class="treeview">
+
+          <a href="#">
+            <i class="fa fa-book"></i>
+            <span>Séances</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">2</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+           <li   ><a href="/proj_auto_ecole/public/admin/Seance_Theorique/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Séances théoriques</span></a></li>
+              <li><a href="/proj_auto_ecole/public/admin/Seance_Pratique/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Séances pratiques</span></a></li>
+          </ul>
+        </li>
+
+<li class="treeview">
+
+          <a href="#">
+            <i class="fa fa-pencil-square-o"></i>
+            <span>Examens</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">3</span>
+            </span>
+          </a>
+          <ul class="treeview-menu ">
+           
+           <li ><a href="/proj_auto_ecole/public/admin/Examen/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Examens théoriques</span></a></li>
+              <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-circuit</span></a></li>
+                   <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique_créno/{{$id1}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-créno</span></a></li>
+          </ul>
+        </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -211,7 +249,7 @@ function bascule(id)
 
   <div class="input-group date"><div class="input-group-addon">
      
-           Confirm mot de passe :
+           Confirm mot de passe 
        </div>
         <input type="password" name="Confirm_mot_de_passe" class="form-control pull-right"></div>
       
@@ -245,7 +283,7 @@ function bascule(id)
 
         </div>
     </div>
-
+</div>
 
 
 
@@ -519,9 +557,9 @@ function bascule(id)
            
 
 
-             <a class="btn btn-success btn-sm" href="{{url('/show_facture',$value->id)}}">
+             <a class="btn btn-success btn-sm" href='/proj_auto_ecole/public/admin/Facture/{{$value->id}}/{{$id1}}'>
               <i class="glyphicon glyphicon-file"></i></a>
-               <a class="btn btn-warning btn-sm" href="{{url('/index_paiement',$value->id)}}" >
+               <a class="btn btn-warning btn-sm" href='/proj_auto_ecole/public/admin/Paiement/{{$value->id}}/{{$id1}}'>
               <i class="glyphicon glyphicon-list-alt"></i></a>
         </td>
 </tr>

@@ -1,8 +1,9 @@
 <?php
 
 namespace App;
-
-class Moderateur extends Eloquent {
+use Eloquent;
+use Illuminate\Foundation\Auth\Personne as Authenticatable;
+class Moderateur extends Authenticatable {
 
 	protected $table = 'moderateur';
 	public $timestamps = false;

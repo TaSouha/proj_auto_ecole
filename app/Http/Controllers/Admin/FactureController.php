@@ -1,14 +1,15 @@
 <?php 
 namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\facture;
 use App\candidat;
 use DB;
 use DateTime;
+use App\Http\Controllers\Controller;
 
 class FactureController extends Controller {
+
 
   /**
    * Display a listing of the resource.
@@ -46,7 +47,7 @@ class FactureController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function show($id)
+  public function show($id,$id1)
   {
       $id_candidat=DB::table('candidat')->where('id_Personne',$id)->value('id');
 $paiement=DB::table('paiement')->where('id_Candidat',$id_candidat)->get();
@@ -58,7 +59,7 @@ $facture=DB::table('facture')->where('id_Candidat',$id_candidat)->first();
 $dateInDB=new DateTime();
 $newDate = $dateInDB->format('d-m-Y');
 
-       return view('Facture.show',compact('personne','paiement','candidat','auto_ecole','newDate','facture','id'));
+       return view('admin.Facture',compact('personne','paiement','candidat','auto_ecole','newDate','facture','id','id1'));
   
     
   }

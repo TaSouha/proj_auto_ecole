@@ -18,20 +18,20 @@ class RedirectIfNotAdmin
 	public function handle($request, Closure $next, $guard = 'admin')
 	{
 	    if (!Auth::guard($guard)->check()) {
-             return redirect('/');    	
+             return redirect('/admin/login');    	
 	    }
       $id=Auth::guard('admin')->user()->id;
              $type=DB::table('teamwork')->where('id_Personne',$id)->value('Type');
              $candidat=DB::table('candidat')->where('id_Personne',$id)->count();
-if($type == 'Administrateur'){
+if($type == 'administrateur'){
 return redirect('/admin/Accueil/'. $id);
 }
 	
-	if($type=='Moniteur'){
+	if($type=='moniteur'){
 return redirect('/');
 	}   
 
-	if($type=='Formateur'){
+	if($type=='formateur'){
 return redirect('/');
 	}  
 	if($candidat != 0){
