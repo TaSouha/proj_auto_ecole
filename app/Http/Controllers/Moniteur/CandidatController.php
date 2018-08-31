@@ -1,5 +1,5 @@
 <?php 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Moniteur;
 
 use Illuminate\Http\Request;
 use App\personne;
@@ -19,14 +19,19 @@ class CandidatController extends Controller {
    */
   public function index($id1)
   {$id_Auto_ecole=DB::table('teamwork')->where('id_Personne',$id1)->value('id_Auto_ecole');
+  $id_moniteur=DB::table('teamwork')->where('id_Personne',$id1)->value('id');
+
     $Candidat= DB::table('candidat')
             ->join('personne', 'personne.id', '=', 'candidat.id_Personne')
             ->join('auto_ecole', 'auto_ecole.id', '=', 'candidat.id_Auto_ecole')
+            ->join('seance_pratique', 'seance_pratique.id_candidat', '=', 'candidat.id')
+
             ->select('personne.id','personne.Nom', 'personne.Prenom', 'personne.Adresse', 'personne.Date_nais', 'personne.Sexe', 'personne.email','personne.password', 'auto_ecole.Nom as Nom1','auto_ecole.id as id1','personne.Photo')
             ->where('candidat.id_Auto_ecole',$id_Auto_ecole)
-            ->GroupBy('candidat.id')->orderby('personne.id','DESC')->get();
+            ->where('seance_pratique.id_moniteur',$id_moniteur)->groupBy('personne.id')
+            ->orderby('personne.id','DESC')->get();
  $list=DB::table('auto_ecole')->groupBy('id')->get();
-       return view('admin.Candidat',compact('Candidat','list','id1'));
+       return view('moniteur_part.Candidat',compact('Candidat','list','id1'));
   }
 
   /**
@@ -168,20 +173,15 @@ DB::table('personne')->where('id',$id)->update($data);
    */
   public function destroy($id,$id1)
   {
+  $id_Candidat=  DB::table('candidat')->where('id_Personne',$id)->value('id');
+  $id_Moniteur=  DB::table('teamwork')->where('id_Personne',$id1)->value('id');
+  
+  $id_Seance=DB::table('seance_pratique')->where('id_candidat',$id_Candidat)->where('id_moniteur',$id_Moniteur)->value('id_Seance');
+    DB::table('seance_pratique')->where('id_candidat',$id_Candidat)->where('id_moniteur',$id_Moniteur)->delete();
+    DB::table('seance')->where('id',$id_Seance)->delete();
 
-   $id_Candidat=  DB::table('candidat')->where('id_Personne',$id)->value('id');
-    DB::table('paiement')->where('id_Candidat',$id_Candidat)->delete();
-    DB::table('examen')->where('id_Candidat',$id_Candidat)->delete();
-    DB::table('seance_pratique')->where('id_candidat',$id_Candidat)->delete();
-    DB::table('seance_theorique')->where('id_candidat',$id_Candidat)->delete();
-     DB::table('facture')->where('id_Candidat',$id_Candidat)->delete();
-    DB::table('candidat')->where('id',$id_Candidat)->delete();
-   DB::table('personne')->where('id',$id)->delete();
 
- return redirect('/admin/Candidat/'. $id1)->with('success','Suppression avec succès');
-
-    
-   
+ return redirect('/moniteur/Candidat/'. $id1)->with('success','Suppression avec succès');
   }
   
 }

@@ -28,7 +28,8 @@ return redirect('/admin/Accueil/'. $id);
 }
 	
 	if($type=='moniteur'){
-return redirect('/');
+return redirect('/moniteur/Accueil/'. $id);
+
 	}   
 
 	if($type=='formateur'){

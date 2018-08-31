@@ -13,79 +13,53 @@
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
        <li class="active">
-          <a href="/proj_auto_ecole/public/admin/Accueil/{{$id}}">
+          <a href="/proj_auto_ecole/public/moniteur/Accueil/{{$id}}">
             <i class="fa fa-dashboard"></i> <span>Accueil</span>
          
           </a>
          
         </li>
-  <li class="treeview">
+  
+           <li ><a href="/proj_auto_ecole/public/moniteur/Auto_ecole/{{$id}}"><i class="fa fa-home"></i> Auto-école </a></li>
 
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>Auto_école</span>
+      
+   
+        <li ><a href="/proj_auto_ecole/public/moniteur/Candidat/{{$id}}"><i class="fa fa-user"></i> <span>Candidats</span></a></li>
+
+        <li class="treeview">
+           <a href="#">
+            <i class="fa fa-automobile"></i>
+            <span>Véhicule</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">3</span>
+              <span class="label label-primary pull-right">4</span>
             </span>
           </a>
           <ul class="treeview-menu">
-           <li ><a href="/proj_auto_ecole/public/admin/Auto_ecole/{{$id}}"><i class="fa fa-circle-o"></i> Paramétrage </a></li>
-            <li ><a href="/proj_auto_ecole/public/admin/Depense/{{$id}}"><i class="fa fa-circle-o"></i> Dépenses </a></li>
-            <li ><a href="/proj_auto_ecole/public/admin/Recette/{{$id}}"><i class="fa fa-circle-o"></i> Recette </a></li>
-            
-          </ul>
-        </li>
-          <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>Employées</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">2</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-           
-                   
-            <li><a href="/proj_auto_ecole/public/admin/Moniteur/{{$id}}"><i class="fa fa-circle-o"></i> Moniteurs </a></li>
-            <li><a href="/proj_auto_ecole/public/admin/Formateur/{{$id}}"><i class="fa fa-circle-o"></i> Formateurs </a></li>
-            
-          </ul>
-        </li>
-        <li ><a href="/proj_auto_ecole/public/admin/Candidat/{{$id}}"><i class="fa fa-user"></i> <span>Candidats</span></a></li>
-               <li><a href="/proj_auto_ecole/public/admin/Vehicule/{{$id}}"><i class=" fa fa-automobile"></i> <span>Véhicules</span></a></li>
+     
+               <li><a href="/proj_auto_ecole/public/moniteur/Vehicule/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Info</span></a></li>
+               <li><a href="/proj_auto_ecole/public/moniteur/Alerte_Vidange/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Alerte de vidange</span></a></li>
+               <li><a href="/proj_auto_ecole/public/moniteur/Alerte_V/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Alerte de visite</span></a></li>
+               <li><a href="/proj_auto_ecole/public/moniteur/Alerte_A/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Alerte d'assurance </span></a></li>
 
+ </ul>
+        </li>
              <li class="treeview">
 
           <a href="#">
             <i class="fa fa-book"></i>
-            <span>Séances</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">2</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-           
-           <li   ><a href="/proj_auto_ecole/public/admin/Seance_Theorique/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Séances théoriques</span></a></li>
-              <li><a href="/proj_auto_ecole/public/admin/Seance_Pratique/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Séances pratiques</span></a></li>
-          </ul>
-        </li>
-
-<li class="treeview">
-
-          <a href="#">
-            <i class="fa fa-pencil-square-o"></i>
-            <span>Examens</span>
+            <span>Séances pratiques</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">3</span>
             </span>
           </a>
-          <ul class="treeview-menu ">
-           
-           <li ><a href="/proj_auto_ecole/public/admin/Examen/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Examens théoriques</span></a></li>
-              <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-circuit</span></a></li>
-                   <li ><a href="/proj_auto_ecole/public/admin/Examen_pratique_créno/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Examens pratiques-créno</span></a></li>
+          <ul class="treeview-menu">
+     
+              <li><a href="/proj_auto_ecole/public/moniteur/Plan_Seance_Pratique/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Plan des séances</span></a></li>
+              <li><a href="/proj_auto_ecole/public/moniteur/Active_Seance_Pratique/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Les séances validées</span></a></li>
+              <li><a href="/proj_auto_ecole/public/moniteur/Non_active_Seance_Pratique/{{$id}}"><i class=" fa fa-circle-o"></i> <span>Les séances en attente</span></a></li>
           </ul>
         </li>
+
 
       </ul>
       <!-- /.sidebar-menu -->
@@ -112,14 +86,14 @@ Accueil
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>{{$formateur}}</h3>
+              <h3>{{$active}}</h3>
 
-              <p>Formateurs</p>
+              <p>Séances Pratique actives</p>
             </div>
             <div class="icon">
-             <i class="fa fa-users"></i>
+             <i class="fa fa-book"></i>
             </div>
-            <a href="/proj_auto_ecole/public/admin/Formateur/{{$id}}" class="small-box-footer">Plus info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/proj_auto_ecole/public/moniteur/Active_Seance_Pratique/{{$id}}" class="small-box-footer">Plus info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -127,14 +101,14 @@ Accueil
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{$moniteur}}<sup style="font-size: 20px"></sup></h3>
+              <h3>{{$attente}}<sup style="font-size: 20px"></sup></h3>
 
-              <p>Moniteurs</p>
+              <p>Séances Pratique en attentes</p>
             </div>
             <div class="icon">
-              <i class="fa fa-users"></i>
+              <i class="fa fa-book"></i>
             </div>
-            <a href="/proj_auto_ecole/public/admin/Moniteur/{{$id}}" class="small-box-footer">Plus info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/proj_auto_ecole/public/moniteur/Non_active_Seance_Pratique/{{$id}}" class="small-box-footer">Plus info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -145,12 +119,12 @@ Accueil
             <div class="inner">
               <h3>{{$candidat}}</h3>
 
-              <p>Candidats</p>
+              <p>Séances Pratiques non actives</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa fa-book"></i>
             </div>
-            <a href="/proj_auto_ecole/public/admin/Candidat/{{$id}} " class="small-box-footer">Plus info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/proj_auto_ecole/public/moniteur/Plan_Seance_Pratique/{{$id}} " class="small-box-footer">Plus info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -165,7 +139,7 @@ Accueil
             <div class="icon">
               <i class="fa  fa-automobile"></i>
             </div>
-            <a href="/proj_auto_ecole/public/admin/Vehicule/{{$id}} " class="small-box-footer">Plus info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/proj_auto_ecole/public/moniteur/Vehicule/{{$id}} " class="small-box-footer">Plus info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -176,7 +150,7 @@ Accueil
 <!-- PRODUCT LIST -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Les nouvelles véhicules ajoutés</h3>
+              <h3 class="box-title">Les nouvelles séances pratiques en attentes</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -199,11 +173,13 @@ Accueil
                     <img src="{{URL::asset('dist/img/default-50x50.gif')}}" alt="Product Image">
                   </div>
                   <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">{{$value->Matricule}}
-                      <span class="label label-warning pull-right">{{$value->Marque}}</span></a>
+                    <a href="javascript:void(0)" class="product-title">{{$value->Date}}
+                      <span class="label label-warning pull-right">{{$value->Etat}}</span></a>
                     <span class="product-description">
-                          {{$value->Type}}
+                         
+                       De  {{$value->Debut}} à {{$value->Fin}}
                         </span>
+                      
                   </div>
                 </li>
                  @endforeach   
@@ -211,7 +187,7 @@ Accueil
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">
-              <a href="/proj_auto_ecole/public/admin/Vehicule/{{$id}}" class="uppercase">Voir tous les véhicules</a>
+              <a href="/proj_auto_ecole/public/moniteur/Non_active_Seance_Pratique/{{$id}}" class="uppercase">Voir tous les séances en attentes</a>
             </div>
             <!-- /.box-footer -->
           </div>
@@ -252,7 +228,7 @@ Accueil
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
-                  <a href="/proj_auto_ecole/public/admin/Candidat/{{$id}} " class="uppercase">Voir tous les candidats</a>
+                  <a href="/proj_auto_ecole/public/moniteur/Candidat/{{$id}} " class="uppercase">Voir tous les candidats</a>
                 </div>
                 <!-- /.box-footer -->
               </div>
